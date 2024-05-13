@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 function ExpenseForm({ onAddExpense }) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
-  const [currency, setCurrency] = useState('USD'); // Default currency is USD
+  const [currency, setCurrency] = useState('CAD'); // Default currency is USD
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ function ExpenseForm({ onAddExpense }) {
     onAddExpense(expense);
     setName('');
     setAmount('');
-    setCurrency('USD'); // Reset currency to USD after submission
+    setCurrency('CAD'); // Reset currency to CAD after submission
   };
 
   return (
@@ -46,8 +46,8 @@ function ExpenseForm({ onAddExpense }) {
           value={currency}
           onChange={(e) => setCurrency(e.target.value)}
         >
-          <option value="USD">USD</option>
-          <option value="CAD">CAD</option>
+          <option value="CAD">USD</option>
+          <option value="USD">CAD</option>
           <option value="GBP">UK Pound</option>
           <option value="BDT">BDT</option>
           <option value="EUR">Euro</option>
