@@ -1,0 +1,20 @@
+.float-table {
+    position: absolute;
+    top: 50px; /* Initial top position */
+    left: 50px; /* Initial left position */
+    width: 200px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: move; /* Change cursor to indicate draggable */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  
+  .float-table h2 {
+    margin-top: 0;
+  }
+  
+  .float-table div {
+    margin-bottom: 10px;
+  }
+  

@@ -3,6 +3,7 @@ import ExpenseForm from './components/expenseForm';
 import ExpenseTable from './components/expenseTable';
 import MonthlyTotal from './components/monthlyTotal';
 import { Button } from 'react-bootstrap';
+import FloatSection from './components/FloatableWeatherAPI/FloatSection';
 
 import * as XLSX from 'xlsx';
 
@@ -52,12 +53,16 @@ function App() {
 
   return (
     <div className="container">
+      <div className="weatherAPI">
+      <FloatSection />
+      </div>
       <h1>Spend Counter</h1>
       <ExpenseForm onAddExpense={addExpense} />
       <ExpenseTable expenses={expenses} onUpdateExpense={updateExpense} />
       <Button onClick={downloadExpenses}>Download Expenses</Button>
       <Button variant="danger" onClick={clearExpenses}>Clear Expenses</Button>
       <MonthlyTotal expenses={expenses} />
+      
     </div>
   );
 }
