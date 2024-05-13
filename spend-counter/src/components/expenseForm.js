@@ -9,7 +9,11 @@ function ExpenseForm({ onAddExpense }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !amount) return;
-    const expense = { name, amount: parseFloat(amount) };
+    const expense = {
+      name,
+      amount: parseFloat(amount),
+      date: new Date().toLocaleString() // Add current date and time
+    };
     onAddExpense(expense);
     setName('');
     setAmount('');
@@ -18,7 +22,7 @@ function ExpenseForm({ onAddExpense }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>Expense Name</Form.Label>
+        <Form.Label>Expense Name: </Form.Label>
         <Form.Control
           type="text"
           value={name}
@@ -26,7 +30,7 @@ function ExpenseForm({ onAddExpense }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Amount</Form.Label>
+        <Form.Label>Amount: </Form.Label>
         <Form.Control
           type="number"
           value={amount}

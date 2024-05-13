@@ -11,6 +11,7 @@ function ExpenseTable({ expenses }) {
           <tr>
             <th>Expense Name</th>
             <th>Amount</th>
+            <th>Date Posted</th> {/* Add date column */}
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@ function ExpenseTable({ expenses }) {
             <tr key={index}>
               <td>{expense.name}</td>
               <td>${expense.amount}</td>
+              <td>{expense.date}</td> {/* Display date */}
             </tr>
           ))}
         </tbody>
