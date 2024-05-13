@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ExpenseForm from './components/expenseForm';
 import ExpenseTable from './components/expenseTable'
 import MonthlyTotal from './components/monthlyTotal';
-import { Button } from 'react-bootstrap'; // Import Button component
+import Button from 'react-bootstrap/Button';
 import * as XLSX from 'xlsx';
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
       <h1>Spend Counter</h1>
       <ExpenseForm onAddExpense={addExpense} />
       <ExpenseTable expenses={expenses} />
-      <Button onClick={downloadExpenses}>Download Expenses</Button>
+      <Button variant="secondary" onClick={downloadExpenses}>Download Expenses</Button>
       <MonthlyTotal expenses={expenses} />
       
     </div>
