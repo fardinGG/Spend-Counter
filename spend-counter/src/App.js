@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ExpenseForm from './components/expenseForm';
-import ExpenseTable from './components/expenseTable'
+import ExpenseTable from './components/expenseTable';
 import MonthlyTotal from './components/monthlyTotal';
-import { Button } from 'react-bootstrap'; 
+import { Button } from 'react-bootstrap';
 
 import * as XLSX from 'xlsx';
+
+const conversionRates = {
+  USD: 1,
+  CAD: 0.75,
+  GBP: 0.65,
+  BDT: 84.85,
+  EUR: 0.85,
+  INR: 73.65,
+};
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -15,10 +24,20 @@ function App() {
   }, []);
 
   const addExpense = (expense) => {
-    const updatedExpenses = [...expenses, expense];
+    const usdAmount = expense.amount / conversionRates[expense.currency];
+    const expenseInUSD = { ...expense, amount: usdAmount };
+    const updatedExpenses = [...expenses, expenseInUSD];
     setExpenses(updatedExpenses);
     localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
   };
+
+  const updateExpense = (index, updatedExpense) => {
+    const updatedExpenses = [...expenses];
+    updatedExpenses[index] = updatedExpense;
+    setExpenses(updatedExpenses);
+    localStorage.setItem('expenses', JSON.stringify(updatedExpenses));
+  };
+
   const clearExpenses = () => {
     setExpenses([]);
     localStorage.removeItem('expenses');
@@ -35,11 +54,10 @@ function App() {
     <div className="container">
       <h1>Spend Counter</h1>
       <ExpenseForm onAddExpense={addExpense} />
-      <ExpenseTable expenses={expenses} />
+      <ExpenseTable expenses={expenses} onUpdateExpense={updateExpense} />
       <Button onClick={downloadExpenses}>Download Expenses</Button>
       <Button variant="danger" onClick={clearExpenses}>Clear Expenses</Button>
       <MonthlyTotal expenses={expenses} />
-      
     </div>
   );
 }
